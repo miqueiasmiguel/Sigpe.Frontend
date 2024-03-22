@@ -6,6 +6,6 @@ import { MedicamentoListaComponent } from './modules/medicamento-lista/medicamen
 export const routes: Routes = [
   {
     path: '',
-    component: MedicamentoListaComponent
+    component: MedicamentoComponent
   }
 ];
