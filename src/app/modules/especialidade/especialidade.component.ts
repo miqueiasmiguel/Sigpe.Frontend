@@ -26,7 +26,7 @@ export class EspecialidadeComponent implements OnInit {
   public alertClass: string = '';
   public alertMessage: string = '';
 
-  especialidadeForm: FormGroup = new FormGroup({
+  form: FormGroup = new FormGroup({
     nome: new FormControl(''),
     descricao: new FormControl(''),
   });
@@ -38,28 +38,28 @@ export class EspecialidadeComponent implements OnInit {
   private inicializaFormulario(): void {
     if (this.id) {
       this.especialidadeService.getById(this.id).subscribe((especialidade) => {
-        this.especialidadeForm.patchValue({
+        this.form.patchValue({
           nome: especialidade.nome,
           descricao: especialidade.descricao
         });
       })
 
-      this.especialidadeForm.disable();
+      this.form.disable();
     }
   }
 
   public editar(): void {
     this.editMode = true;
-    this.especialidadeForm.enable();
+    this.form.enable();
   }
 
   public salvar(): void {
-    if (!this.especialidadeForm.valid) {
+    if (!this.form.valid) {
       return;
     }
 
-    this.especialidade.nome = this.especialidadeForm.value.nome;
-    this.especialidade.descricao = this.especialidadeForm.value.descricao;
+    this.especialidade.nome = this.form.value.nome;
+    this.especialidade.descricao = this.form.value.descricao;
 
     if (this.id) {
       this.especialidade.id = this.id;
@@ -68,7 +68,7 @@ export class EspecialidadeComponent implements OnInit {
     }
 
     this.cadastrar(this.especialidade);
-    this.especialidadeForm.reset();
+    this.form.reset();
   }
 
   public deletar(id: number): void {
@@ -99,7 +99,7 @@ export class EspecialidadeComponent implements OnInit {
       next: (especialidade) => {
         this.mostrarAlerta(`Especialidade ${especialidade.nome} atualizada com sucesso!`, true);
         this.editMode = false;
-        this.especialidadeForm.disable();
+        this.form.disable();
       },
       error: (err) => {
         this.mostrarAlerta(`Erro: ${err.error.message}`, false);

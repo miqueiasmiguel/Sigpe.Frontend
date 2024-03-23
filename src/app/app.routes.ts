@@ -4,6 +4,8 @@ import { MedicamentoComponent } from './modules/medicamento/medicamento.componen
 import { MedicamentoListaComponent } from './modules/medicamento-lista/medicamento-lista.component';
 import { EspecialidadeComponent } from './modules/especialidade/especialidade.component';
 import { EspecialidadeListaComponent } from './modules/especialidade-lista/especialidade-lista.component';
+import { PlanoSaudeListaComponent } from './modules/plano-saude-lista/plano-saude-lista.component';
+import { PlanoSaudeComponent } from './modules/plano-saude/plano-saude.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -14,4 +16,7 @@ export const routes: Routes = [
   { path: 'especialidade', component: EspecialidadeListaComponent },
   { path: 'especialidade/novo', component: EspecialidadeComponent },
   { path: 'especialidade/:id', component: EspecialidadeComponent },
+  { path: 'plano-saude', component: PlanoSaudeListaComponent },
+  { path: 'plano-saude/novo', component: PlanoSaudeComponent },
+  { path: 'plano-saude/:id', component: PlanoSaudeComponent },
 ];

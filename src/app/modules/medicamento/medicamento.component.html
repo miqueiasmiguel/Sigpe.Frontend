@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="container-sm d-flex justify-content-center">
-  <form class="form w-50 mt-4" [formGroup]="medicamentoForm">
+  <form class="form w-50 mt-4" [formGroup]="form">
     @if (showAlert) {
       <div [ngClass]="alertClass" class="alert alert-dismissible fade show" role="alert">
         {{ alertMessage }}

@@ -16,12 +16,11 @@ export class EspecialidadeListaComponent implements OnInit {
   especialidades: Especialidade[] = [];
 
   ngOnInit(): void {
-    this.obterEspecialidades();
+    this.alimentarLista();
   }
 
-  private obterEspecialidades() {
+  private alimentarLista() {
     this.espcecialidadeService.get().subscribe((response) => {
-      console.log(response);
       this.especialidades = response;
     })
   }

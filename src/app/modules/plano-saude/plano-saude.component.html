@@ -9,7 +9,7 @@
     }
     <div class="container d-flex flex-column">
       <div class="container d-flex justify-content-end">
-        <button routerLink="/especialidade" type="button" class="btn btn-outline-primary">Voltar</button>
+        <button routerLink="/plano-saude" type="button" class="btn btn-outline-primary">Voltar</button>
       </div>
       <div class="container d-flex">
         @if (id) {
@@ -22,10 +22,6 @@
           <label for="nome" class="form-label">Nome</label>
           <input type="text" class="form-control" id="nome" formControlName="nome">
         </div>
-      </div>
-      <div class="container mb-3">
-        <label for="descricao" class="form-label">Descrição</label>
-        <textarea class="form-control" id="descricao" rows="3" formControlName="descricao"></textarea>
       </div>
       <div class="container d-flex justify-content-end">
         @if (id && editMode) {

@@ -1,24 +1,24 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MedicamentoService } from '../../services/medicamento.service';
-import { Medicamento } from '../../models/medicamento.interface';
-import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
+import { PlanoSaudeService } from '../../services/plano-saude.service';
+import { PlanoSaude } from '../../models/plano-saude.interface';
 
 @Component({
-  selector: 'app-medicamento',
+  selector: 'app-plano-saude',
   standalone: true,
   imports: [CommonModule, NavbarComponent, ReactiveFormsModule, RouterLink],
-  templateUrl: './medicamento.component.html',
-  styleUrl: './medicamento.component.scss'
+  templateUrl: './plano-saude.component.html',
+  styleUrl: './plano-saude.component.scss'
 })
-export class MedicamentoComponent implements OnInit {
+export class PlanoSaudeComponent implements OnInit {
   @Input() id?: number;
-  private medicamentoService = inject(MedicamentoService);
+  private planoSaudeService = inject(PlanoSaudeService);
   private router = inject(Router);
 
-  private medicamento: Medicamento = { nome: '' };
+  private planoSaude: PlanoSaude = { nome: '' };
 
   public editMode: boolean = false;
 
@@ -36,9 +36,9 @@ export class MedicamentoComponent implements OnInit {
 
   private inicializaFormulario(): void {
     if (this.id) {
-      this.medicamentoService.getById(this.id).subscribe((medicamento) => {
+      this.planoSaudeService.getById(this.id).subscribe((planoSaude) => {
         this.form.patchValue({
-          nome: medicamento.nome
+          nome: planoSaude.nome
         });
       })
 
@@ -56,22 +56,22 @@ export class MedicamentoComponent implements OnInit {
       return;
     }
 
-    this.medicamento.nome = this.form.value.nome;
+    this.planoSaude.nome = this.form.value.nome;
 
     if (this.id) {
-      this.medicamento.id = this.id;
-      this.atualizar(this.medicamento);
+      this.planoSaude.id = this.id;
+      this.atualizar(this.planoSaude);
       return;
     }
 
-    this.cadastrar(this.medicamento);
+    this.cadastrar(this.planoSaude);
     this.form.reset();
   }
 
   public deletar(id: number): void {
-    this.medicamentoService.delete(id).subscribe({
+    this.planoSaudeService.delete(id).subscribe({
       next: () => {
-        this.router.navigate(['medicamento']);
+        this.router.navigate(['plano-saude']);
       },
       error: (err) => {
         this.mostrarAlerta(`Erro: ${err.error.message}`, false);
@@ -79,10 +79,10 @@ export class MedicamentoComponent implements OnInit {
     });
   }
 
-  private cadastrar(medicamento: Medicamento): void {
-    this.medicamentoService.create(medicamento).subscribe({
-      next: (medicamento) => {
-        this.mostrarAlerta(`Medicamento ${medicamento.nome} cadastrado com sucesso!`, true);
+  private cadastrar(planoSaude: PlanoSaude): void {
+    this.planoSaudeService.create(planoSaude).subscribe({
+      next: (planoSaude) => {
+        this.mostrarAlerta(`Plano de saúde ${planoSaude.nome} cadastrado com sucesso!`, true);
       },
       error: (err) => {
         console.log(err);
@@ -91,10 +91,10 @@ export class MedicamentoComponent implements OnInit {
     });
   }
 
-  private atualizar(medicamento: Medicamento): void {
-    this.medicamentoService.update(medicamento).subscribe({
-      next: (medicamento) => {
-        this.mostrarAlerta(`Medicamento ${medicamento.nome} atualizado com sucesso!`, true);
+  private atualizar(planoSaude: PlanoSaude): void {
+    this.planoSaudeService.update(planoSaude).subscribe({
+      next: (planoSaude) => {
+        this.mostrarAlerta(`Plano de Saúde ${planoSaude.nome} atualizado com sucesso!`, true);
         this.editMode = false;
         this.form.disable();
       },
