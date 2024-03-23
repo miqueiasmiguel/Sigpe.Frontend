@@ -1,1 +1,65 @@
-<p>medico-cadastro works!</p>
+<app-navbar></app-navbar>
+<div class="container-sm d-flex justify-content-center">
+  <form class="form w-50 mt-4" [formGroup]="form">
+    @if (showAlert) {
+      <div [ngClass]="alertClass" class="alert alert-dismissible fade show" role="alert">
+        {{ alertMessage }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    }
+    <div class="container d-flex flex-column">
+      <div class="container d-flex justify-content-end">
+        <button routerLink="/medico" type="button" class="btn btn-outline-primary">Voltar</button>
+      </div>
+      <div class="container d-flex">
+        @if (id) {
+          <div class="mb-3 me-3">
+            <label for="nome" class="form-label">Id</label>
+            <input type="text" class="form-control" id="nome" value="{{ id }}" disabled>
+          </div>
+        }
+        <div class="mb-3 w-100">
+          <label for="nome" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="nome" formControlName="nome">
+        </div>
+      </div>
+      <div class="container d-flex">
+        <div class="mb-3 me-3">
+          <label for="dataNascimento" class="form-label">Data de nascimento</label>
+          <input type="date" class="form-control" id="dataNascimento" formControlName="dataNascimento">
+        </div>
+        <div class="mb-3 w-100">
+          <label for="endereco" class="form-label">Endereço</label>
+          <input type="text" class="form-control" id="endereco" formControlName="endereco">
+        </div>
+      </div>
+      <div class="container d-flex flex-row">
+        <div class="mb-3 me-3">
+          <label for="telefone" class="form-label">Telefone</label>
+          <input type="text" class="form-control" id="telefone" formControlName="telefone">
+        </div>
+        <div class="mb-3 me-3">
+          <label for="crm" class="form-label">CRM</label>
+          <input type="text" class="form-control" id="telefone" formControlName="crm">
+        </div>
+        <div class="mb-3">
+          <label for="especialidade" class="form-label">Especialidade</label>
+          <input type="text" class="form-control" id="especialidade" formControlName="especialidadeId">
+        </div>
+      </div>
+      <div class="container d-flex justify-content-end">
+        @if (id && editMode) {
+          <button type="submit" class="btn btn-primary ms-3" (click)="salvar()">Salvar</button>
+        } @else if (id) {
+          <button type="button" class="btn btn-primary ms-3" (click)="editar()">Editar</button>
+        } @else {
+          <button type="submit" class="btn btn-primary ms-3" (click)="salvar()">Salvar</button>
+        }
+
+        @if (id) {
+          <button type="button" class="btn btn-danger ms-3" (click)="deletar(id)">Deletar</button>
+        }
+      </div>
+    </div>
+  </form>
+</div>
