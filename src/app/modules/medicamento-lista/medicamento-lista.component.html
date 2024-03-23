@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="container-sm d-flex flex-column justify-content-center">
   <div class="d-flex justify-content-end my-3">
-    <button class="btn btn-primary">Novo</button>
+    <button class="btn btn-primary" routerLink="/medicamento/novo">Novo</button>
   </div>
   <table class="table table-striped table-hover">
     <thead>
@@ -11,19 +11,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry the Bird</td>
-      </tr>
+      @for (medicamento of medicamentos; track medicamento.id) {
+        <tr routerLink="/medicamento/{{ medicamento.id }}">
+          <th scope="row">{{ medicamento.id }}</th>
+          <td>{{ medicamento.nome }}</td>
+        </tr>
+      }
     </tbody>
   </table>
 </div>

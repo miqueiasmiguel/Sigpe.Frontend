@@ -4,8 +4,9 @@ import { MedicamentoComponent } from './modules/medicamento/medicamento.componen
 import { MedicamentoListaComponent } from './modules/medicamento-lista/medicamento-lista.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: MedicamentoComponent
-  }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'medicamento', component: MedicamentoListaComponent },
+  { path: 'medicamento/novo', component: MedicamentoComponent },
+  { path: 'medicamento/:id', component: MedicamentoComponent },
 ];
