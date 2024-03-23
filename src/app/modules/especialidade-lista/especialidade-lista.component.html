@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<div class="container-sm d-flex flex-column justify-content-center">
+  <div class="d-flex justify-content-end my-3">
+    <button class="btn btn-primary" routerLink="/especialidade/novo">Novo</button>
+  </div>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (especialidade of especialidades; track especialidade.id) {
+        <tr routerLink="/especialidade/{{ especialidade.id }}">
+          <th scope="row">{{ especialidade.id }}</th>
+          <td>{{ especialidade.nome }}</td>
+          <td>{{ especialidade.descricao }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

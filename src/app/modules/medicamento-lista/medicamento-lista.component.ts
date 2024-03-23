@@ -16,10 +16,10 @@ export class MedicamentoListaComponent implements OnInit {
   medicamentos: Medicamento[] = [];
 
   ngOnInit(): void {
-    this.obtemMedicamentos();
+    this.obterMedicamentos();
   }
 
-  private obtemMedicamentos() {
+  private obterMedicamentos() {
     this.medicamentoService.get().subscribe((response) => {
       console.log(response);
       this.medicamentos = response;

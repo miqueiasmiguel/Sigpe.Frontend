@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="container-sm d-flex justify-content-center">
-  <form class="form w-50 mt-4" [formGroup]="medicamentoForm">
+  <form class="form w-50 mt-4" [formGroup]="especialidadeForm">
     @if (showAlert) {
       <div [ngClass]="alertClass" class="alert alert-dismissible fade show" role="alert">
         {{ alertMessage }}
@@ -9,7 +9,7 @@
     }
     <div class="container d-flex flex-column">
       <div class="container d-flex justify-content-end">
-        <button routerLink="/medicamento" type="button" class="btn btn-outline-primary">Voltar</button>
+        <button routerLink="/especialidade" type="button" class="btn btn-outline-primary">Voltar</button>
       </div>
       <div class="container d-flex">
         @if (id) {
@@ -22,6 +22,10 @@
           <label for="nome" class="form-label">Nome</label>
           <input type="text" class="form-control" id="nome" formControlName="nome">
         </div>
+      </div>
+      <div class="container mb-3">
+        <label for="descricao" class="form-label">Descrição</label>
+        <textarea class="form-control" id="descricao" rows="3" formControlName="descricao"></textarea>
       </div>
       <div class="container d-flex justify-content-end">
         @if (id && editMode) {

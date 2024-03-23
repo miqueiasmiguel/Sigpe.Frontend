@@ -61,11 +61,11 @@ export class MedicamentoComponent implements OnInit {
 
     if (this.id) {
       this.medicamento.id = this.id;
-      this.atualizarMedicamento(this.medicamento);
+      this.atualizar(this.medicamento);
       return;
     }
 
-    this.cadastrarMedicamento(this.medicamento);
+    this.cadastrar(this.medicamento);
     this.medicamentoForm.reset();
   }
 
@@ -80,7 +80,7 @@ export class MedicamentoComponent implements OnInit {
     });
   }
 
-  private cadastrarMedicamento(medicamento: Medicamento): void {
+  private cadastrar(medicamento: Medicamento): void {
     this.medicamentoService.create(medicamento).subscribe({
       next: (medicamento) => {
         this.mostrarAlerta(`Medicamento ${medicamento.nome} cadastrado com sucesso!`, true);
@@ -92,7 +92,7 @@ export class MedicamentoComponent implements OnInit {
     });
   }
 
-  private atualizarMedicamento(medicamento: Medicamento): void {
+  private atualizar(medicamento: Medicamento): void {
     this.medicamentoService.update(medicamento).subscribe({
       next: (medicamento) => {
         this.mostrarAlerta(`Medicamento ${medicamento.nome} atualizado com sucesso!`, true);
