@@ -5,6 +5,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { MedicoService } from '../../services/medico.service';
 import { Medico } from '../../models/medico.interface';
+import { EspecialidadeService } from '../../services/especialidade.service';
+import { Especialidade } from '../../models/especialidade.interface';
 
 @Component({
   selector: 'app-medico-cadastro',
@@ -16,7 +18,10 @@ import { Medico } from '../../models/medico.interface';
 export class MedicoCadastroComponent {
   @Input() id?: number;
   private medicoService = inject(MedicoService);
+  private especialidadeService = inject(EspecialidadeService);
   private router = inject(Router);
+
+  public especialidades: Especialidade[] = [];
 
   private medico: Medico = {
     nome: '',
@@ -44,6 +49,7 @@ export class MedicoCadastroComponent {
 
   ngOnInit(): void {
     this.inicializaFormulario();
+    this.carregarEspecialidades();
   }
 
   private inicializaFormulario(): void {
@@ -124,6 +130,17 @@ export class MedicoCadastroComponent {
         this.mostrarAlerta(`Erro: ${err.error.message}`, false);
       }
     });
+  }
+
+  private carregarEspecialidades(): void {
+    this.especialidadeService.get().subscribe({
+      next: (especialidades) => {
+        this.especialidades = especialidades;
+      },
+      error: (err) => {
+        this.mostrarAlerta(`Erro: ${err.error.message}`, false);
+      }
+    })
   }
 
   private mostrarAlerta(mensagem: string, isSuccess: boolean) {
