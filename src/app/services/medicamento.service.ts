@@ -14,4 +14,20 @@ export class MedicamentoService {
   public get(): Observable<Medicamento[]> {
     return this.http.get<Medicamento[]>(this.endpointBase);
   }
+
+  public getById(id: number): Observable<Medicamento> {
+    return this.http.get<Medicamento>(`${this.endpointBase}/${id}`);
+  }
+
+  public create(medicamento: Medicamento): Observable<Medicamento> {
+    return this.http.post<Medicamento>(this.endpointBase, medicamento);
+  }
+
+  public update(medicamento: Medicamento): Observable<Medicamento> {
+    return this.http.put<Medicamento>(this.endpointBase, medicamento);
+  }
+
+  public delete(id: number) {
+    return this.http.delete(`${this.endpointBase}/${id}`);
+  }
 }

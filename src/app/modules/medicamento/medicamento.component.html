@@ -1,18 +1,39 @@
 <app-navbar></app-navbar>
 <div class="container-sm d-flex justify-content-center">
-  <div class="form w-50 mt-4">
-    <div class="mb-3">
-      <label for="nome" class="form-label">Nome</label>
-      <input type="text" class="form-control" id="nome">
+  <form class="form w-50 mt-4" [formGroup]="medicamentoForm">
+    @if (showAlert) {
+      <div [ngClass]="alertClass" class="alert alert-dismissible fade show" role="alert">
+        {{ alertMessage }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    }
+    <div class="container d-flex justify-content-end">
+      <button routerLink="/medicamento" type="button" class="btn btn-outline-primary">Voltar</button>
+    </div>
+    <div class="d-flex">
+      @if (id) {
+        <div class="mb-3">
+          <label for="nome" class="form-label">Id</label>
+          <input type="text" class="form-control" id="nome" value="{{ id }}" disabled>
+        </div>
+      }
+      <div class="mb-3 ms-3 w-100">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nome" formControlName="nome">
+      </div>
     </div>
     <div class="d-flex justify-content-end">
-      <button type="submit" class="btn btn-primary me-3">Adicionar</button>
-      <button type="submit" class="btn btn-danger">Cancelar</button>
+      @if (id && editMode) {
+        <button type="submit" class="btn btn-primary me-3" (click)="salvar()">Salvar</button>
+      } @else if (id) {
+        <button type="button" class="btn btn-primary me-3" (click)="editar()">Editar</button>
+      } @else {
+        <button type="submit" class="btn btn-primary me-3" (click)="salvar()">Salvar</button>
+      }
+
+      @if (id) {
+        <button type="button" class="btn btn-danger me-3" (click)="deletar(id)">Deletar</button>
+      }
     </div>
-    <div class="d-flex justify-content-end">
-      <button type="submit" class="btn btn-primary me-3">Editar</button>
-      <button type="submit" class="btn btn-primary me-3">Salvar</button>
-      <button type="submit" class="btn btn-danger">Deletar</button>
-    </div>
-  </div>
+  </form>
 </div>
