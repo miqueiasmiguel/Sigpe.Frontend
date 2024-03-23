@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="container-sm d-flex flex-column justify-content-center">
   <div class="d-flex justify-content-end my-3">
-    <button class="btn btn-primary" routerLink="/medico/novo">Novo</button>
+    <button class="btn btn-primary" routerLink="/medico/cadastro">Novo</button>
   </div>
   <table class="table table-striped table-hover">
     <thead>
@@ -15,7 +15,7 @@
     </thead>
     <tbody>
       @for (medico of medicos; track medico.id) {
-        <tr routerLink="/medico/{{ medico.id }}">
+        <tr routerLink="/medico/cadastro/{{ medico.id }}">
           <th scope="row">{{ medico.id }}</th>
           <td>{{ medico.nome }}</td>
           <td>{{ medico.telefone }}</td>
