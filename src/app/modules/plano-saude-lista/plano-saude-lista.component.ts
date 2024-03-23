@@ -22,6 +22,6 @@ export class PlanoSaudeListaComponent implements OnInit {
   private alimentarLista() {
     this.planoSaudeService.get().subscribe((response) => {
       this.planosSaude = response;
-    })
+    });
   }
 }
