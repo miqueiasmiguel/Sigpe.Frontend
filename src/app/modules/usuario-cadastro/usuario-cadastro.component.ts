@@ -7,8 +7,6 @@ import { Router, RouterLink } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { PacienteService } from '../../services/paciente.service';
 import { MedicoService } from '../../services/medico.service';
-import { Paciente } from '../../models/paciente.interface';
-import { Medico } from '../../models/medico.interface';
 import { Usuario } from '../../models/usuario.interface';
 import { Pessoa } from '../../models/pessoa.interface';
 
