@@ -18,7 +18,7 @@
           <th scope="row">{{ usuario.id }}</th>
           <td>{{ usuario.email }}</td>
           <td>{{ usuario.pessoaId }}</td>
-          <td>{{ usuario.tipoUsuario }}</td>
+          <td>{{ converterTipoUsuarioParaString(usuario.tipoUsuario) }}</td>
         </tr>
       }
     </tbody>

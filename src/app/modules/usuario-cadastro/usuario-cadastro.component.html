@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+<div class="container-sm d-flex justify-content-center">
+  <form class="form w-50 mt-4" [formGroup]="form">
+    @if (showAlert) {
+      <div [ngClass]="alertClass" class="alert fade show" role="alert">
+        {{ alertMessage }}
+      </div>
+    }
+    <div class="container d-flex flex-column">
+      <div class="container d-flex justify-content-end">
+        <button routerLink="/usuario" type="button" class="btn btn-outline-primary">Voltar</button>
+      </div>
+      <div class="container">
+        @if (id) {
+          <div class="mb-3">
+            <label for="nome" class="form-label">Id</label>
+            <input type="text" class="form-control" id="nome" value="{{ id }}" disabled>
+          </div>
+        }
+      </div>
+      <div class="container d-flex">
+        <div class="mb-3 w-50">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" class="form-control" id="email" formControlName="email">
+        </div>
+        <div class="mb-3 ms-3 w-50">
+          <label for="senha" class="form-label">Senha</label>
+          <input type="password" class="form-control" id="senha" formControlName="senha">
+        </div>
+      </div>
+      <div class="container d-flex">
+        <div class="mb-3 w-50">
+          <label for="tipoUsuario" class="form-label">Tipo</label>
+          <select (change)="onTipoChange($event)" class="form-select form-control" id="tipoUsuario" formControlName="tipoUsuario">
+            @for (tipoUsuario of tiposUsuario; track tipoUsuario) {
+              <option value="{{ tipoUsuario.value }}">{{ tipoUsuario.display }}</option>
+            }
+          </select>
+        </div>
+        <div class="mb-3 ms-3 w-50">
+          <label for="pessoaId" class="form-label">Pessoa</label>
+          <select class="form-select form-control" id="pessoaId" formControlName="pessoaId">
+            @for (pessoa of pessoas; track pessoa.id) {
+              <option value="{{ pessoa.id }}">{{ pessoa.nome }}</option>
+            }
+          </select>
+        </div>
+      </div>
+      <div class="container d-flex justify-content-end">
+        @if (id && editMode) {
+          <button type="submit" class="btn btn-primary ms-3" (click)="salvar()">Salvar</button>
+        } @else if (id) {
+          <button type="button" class="btn btn-primary ms-3" (click)="editar()">Editar</button>
+        } @else {
+          <button type="submit" class="btn btn-primary ms-3" (click)="salvar()">Salvar</button>
+        }
+
+        @if (id) {
+          <button type="button" class="btn btn-danger ms-3" (click)="deletar(id)">Deletar</button>
+        }
+      </div>
+    </div>
+  </form>
+</div>
