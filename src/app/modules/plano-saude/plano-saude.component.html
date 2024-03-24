@@ -2,9 +2,8 @@
 <div class="container-sm d-flex justify-content-center">
   <form class="form w-50 mt-4" [formGroup]="form">
     @if (showAlert) {
-      <div [ngClass]="alertClass" class="alert alert-dismissible fade show" role="alert">
+      <div [ngClass]="alertClass" class="alert fade show" role="alert">
         {{ alertMessage }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     }
     <div class="container d-flex flex-column">
