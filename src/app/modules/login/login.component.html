@@ -1,17 +1,22 @@
 <main class="w-100 m-auto align-items-center justify-content-center login-main">
   <img src="/assets/login-logo.svg">
   <div class="login-card">
+    @if (showAlert) {
+      <div [ngClass]="alertClass" class="alert fade show" role="alert">
+        {{ alertMessage }}
+      </div>
+    }
     <p>A sua <strong>saúde</strong> em boas mãos.</p>
-    <form action="">
+    <form [formGroup]="form" class="container">
       <div class="form-floating">
-        <input type="email" class="form-control" id="loginemail" placeholder="seu-email@exemplo.com">
+        <input type="email" class="form-control" id="loginemail" placeholder="seu-email@exemplo.com" formControlName="email">
         <label for="loginemail">E-mail</label>
       </div>
       <div class="form-floating my-3">
-        <input type="password" class="form-control" id="loginsenha" placeholder="Senha">
+        <input type="password" class="form-control" id="loginsenha" placeholder="Senha" formControlName="senha">
         <label for="loginsenha">Senha</label>
       </div>
-      <button routerLink="/medicamento"  class="btn btn-primary w-100 py-2" type="button">Entrar</button>
+      <button (click)="onSubmit()"  class="btn btn-primary w-100 py-2" type="button">Entrar</button>
     </form>
   </div>
 </main>
