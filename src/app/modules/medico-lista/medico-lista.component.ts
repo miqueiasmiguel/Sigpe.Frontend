@@ -13,7 +13,7 @@ import { Medico } from '../../models/medico.interface';
 })
 export class MedicoListaComponent implements OnInit {
   private medicoService = inject(MedicoService);
-  public medicos: Medico[] = []
+  public medicos: Medico[] = [];
 
   public ngOnInit(): void {
     this.alimentarLista();

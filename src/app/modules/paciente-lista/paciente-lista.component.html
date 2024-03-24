@@ -1,1 +1,28 @@
-<p>paciente-lista works!</p>
+<app-navbar></app-navbar>
+<div class="container-sm d-flex flex-column justify-content-center">
+  <div class="d-flex justify-content-end my-3">
+    <button class="btn btn-primary" routerLink="/paciente/cadastro">Novo</button>
+  </div>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Data de nascimento</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">Especialidade</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (paciente of pacientes; track paciente.id) {
+        <tr routerLink="/paciente/cadastro/{{ paciente.id }}">
+          <th scope="row">{{ paciente.id }}</th>
+          <td>{{ paciente.nome }}</td>
+          <td>{{ paciente.dataNascimento | date:"dd/MM/YYYY" }}</td>
+          <td>{{ paciente.telefone }}</td>
+          <td>{{ paciente.planoSaudeId }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

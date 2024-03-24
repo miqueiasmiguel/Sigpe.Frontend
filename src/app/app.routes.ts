@@ -8,6 +8,7 @@ import { PlanoSaudeListaComponent } from './modules/plano-saude-lista/plano-saud
 import { PlanoSaudeComponent } from './modules/plano-saude/plano-saude.component';
 import { MedicoListaComponent } from './modules/medico-lista/medico-lista.component';
 import { MedicoCadastroComponent } from './modules/medico-cadastro/medico-cadastro.component';
+import { PacienteListaComponent } from './modules/paciente-lista/paciente-lista.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -28,4 +29,8 @@ export const routes: Routes = [
   { path: 'medico', component: MedicoListaComponent },
   { path: 'medico/cadastro', component: MedicoCadastroComponent },
   { path: 'medico/cadastro/:id', component: MedicoCadastroComponent },
+
+  { path: 'paciente', component: PacienteListaComponent },
+  //{ path: 'paciente/cadastro', component: MedicoCadastroComponent },
+  //{ path: 'paciente/cadastro/:id', component: MedicoCadastroComponent },
 ];
