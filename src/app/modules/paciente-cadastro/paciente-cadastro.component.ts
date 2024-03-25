@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { Component, Input, inject } from '@angular/core';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -55,7 +55,7 @@ export class PacienteCadastroComponent {
       this.pacienteService.getById(this.id).subscribe((paciente) => {
         this.form.patchValue({
           nome: paciente.nome,
-          dataNascimento: paciente.dataNascimento,
+          dataNascimento: formatDate(paciente.dataNascimento, 'yyyy-MM-dd', 'en'),
           endereco: paciente.endereco,
           telefone: paciente.telefone,
           planoSaudeId: paciente.planoSaudeId

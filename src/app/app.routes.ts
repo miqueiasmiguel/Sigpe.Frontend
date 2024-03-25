@@ -16,16 +16,20 @@ import { authGuard } from './guards/auth.guard';
 import { hasRoleGuard } from './guards/has-role.guard';
 import { TipoUsuarioEnum } from './enums/tipo-usuario.enum';
 import { AgendamentoListaComponent } from './modules/agendamento-lista/agendamento-lista.component';
+import { AgendamentoComponent } from './modules/agendamento/agendamento.component';
 
 export const routes: Routes = [
   { path: '',
     component: AgendamentoListaComponent,
     children: [
       { path: '', redirectTo: 'agendamento', pathMatch: 'full' },
-      { path: 'agendamento', component: AgendamentoListaComponent },
     ],
     canMatch: [authGuard]
   },
+
+  { path: 'agendamento', component: AgendamentoListaComponent, canMatch: [authGuard] },
+  { path: 'agendamento/novo', component: AgendamentoComponent, canMatch: [authGuard] },
+  { path: 'agendamento/:id', component: AgendamentoComponent, canMatch: [authGuard] },
 
   { path: 'medicamento', component: MedicamentoListaComponent },
   { path: 'medicamento/novo', component: MedicamentoComponent },
