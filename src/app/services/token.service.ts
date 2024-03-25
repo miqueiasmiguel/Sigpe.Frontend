@@ -23,7 +23,8 @@ export class TokenService {
   }
 
   public getAuthorizationToken(): string | undefined | null {
-    return window.localStorage.getItem('jwtToken');
+
+    return window.localStorage.getItem('jwtToken');;
   }
 
   public getExpirationDate(token: string): Date {

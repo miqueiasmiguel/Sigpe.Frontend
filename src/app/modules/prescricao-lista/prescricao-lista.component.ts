@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
@@ -7,7 +8,7 @@ import { Prescricao } from '../../models/prescricao.interface';
 @Component({
   selector: 'app-prescricao-lista',
   standalone: true,
-  imports: [RouterLink, NavbarComponent],
+  imports: [CommonModule, RouterLink, NavbarComponent],
   templateUrl: './prescricao-lista.component.html',
   styleUrl: './prescricao-lista.component.scss'
 })

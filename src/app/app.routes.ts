@@ -18,6 +18,7 @@ import { TipoUsuarioEnum } from './enums/tipo-usuario.enum';
 import { AgendamentoListaComponent } from './modules/agendamento-lista/agendamento-lista.component';
 import { AgendamentoComponent } from './modules/agendamento/agendamento.component';
 import { PrescricaoListaComponent } from './modules/prescricao-lista/prescricao-lista.component';
+import { PrescricaoComponent } from './modules/prescricao/prescricao.component';
 
 export const routes: Routes = [
   { path: '',
@@ -45,8 +46,8 @@ export const routes: Routes = [
   { path: 'plano-saude/:id', component: PlanoSaudeComponent },
 
   { path: 'prescricao', component: PrescricaoListaComponent },
-  //{ path: 'prescricao/novo', component: PrescricaoComponent },
-  //{ path: 'prescricao/:id', component: PrescricaoComponent },
+  { path: 'prescricao/novo', component: PrescricaoComponent },
+  { path: 'prescricao/:id', component: PrescricaoComponent },
 
   { path: 'medico', component: MedicoListaComponent },
   { path: 'medico/cadastro', component: MedicoCadastroComponent },

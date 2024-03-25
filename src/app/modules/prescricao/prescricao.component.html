@@ -1,0 +1,74 @@
+<app-navbar></app-navbar>
+<div class="container-sm d-flex justify-content-center">
+  <form class="form w-50 mt-4" [formGroup]="form">
+    @if (showAlert) {
+      <div [ngClass]="alertClass" class="alert fade show" role="alert">
+        {{ alertMessage }}
+      </div>
+    }
+    <div class="container d-flex flex-column">
+      <div class="container d-flex justify-content-end">
+        <button routerLink="/prescricao" type="button" class="btn btn-outline-primary">Voltar</button>
+      </div>
+      <div class="container d-flex">
+        @if (id) {
+          <div class="mb-3">
+            <label for="nome" class="form-label">Id</label>
+            <input type="text" class="form-control" id="nome" value="{{ id }}" disabled>
+          </div>
+        }
+      </div>
+      <div class="container d-flex">
+        <div class="mb-3 me-3 w-50">
+          <label for="data" class="form-label">Data</label>
+          <input type="date" class="form-control" id="data" formControlName="data">
+        </div>
+        <div class="mb-3 w-50">
+          <label for="medicamentoId" class="form-label">Medicamento</label>
+          <select class="form-select form-control" id="medicamentoId" formControlName="medicamentoId">
+            @for (medicamento of medicamentos; track medicamento.id) {
+              <option value="{{ medicamento.id }}">{{ medicamento.nome }}</option>
+            }
+          </select>
+        </div>
+      </div>
+      <div class="container d-flex justify-content-between">
+        <div class="mb-3 w-50">
+          <label for="pacienteId" class="form-label">Paciente</label>
+          <select class="form-select form-control" id="pacienteId" formControlName="pacienteId">
+            @for (paciente of pacientes; track paciente.id) {
+              <option value="{{ paciente.id }}">{{ paciente.nome }}</option>
+            }
+          </select>
+        </div>
+        <div class="mb-3 ms-3 w-50">
+          <label for="medicoId" class="form-label">Médico</label>
+          <select class="form-select form-control" id="medicoId" formControlName="medicoId">
+            @for (medico of medicos; track medico.id) {
+              <option value="{{ medico.id }}">{{ medico.nome }}</option>
+            }
+          </select>
+        </div>
+      </div>
+      <div class="container d-flex">
+        <div class="mb-3 w-100">
+          <label for="instrucoes" class="form-label">Instruções</label>
+          <textarea class="form-control" name="instrucoes" rows="3" id="instrucoes" formControlName="instrucoes"></textarea>
+        </div>
+      </div>
+      <div class="container d-flex justify-content-end">
+        @if (id && editMode) {
+          <button type="submit" class="btn btn-primary ms-3" (click)="salvar()">Salvar</button>
+        } @else if (id) {
+          <button type="button" class="btn btn-primary ms-3" (click)="editar()">Editar</button>
+        } @else {
+          <button type="submit" class="btn btn-primary ms-3" (click)="salvar()">Salvar</button>
+        }
+
+        @if (id) {
+          <button type="button" class="btn btn-danger ms-3" (click)="deletar(id)">Deletar</button>
+        }
+      </div>
+    </div>
+  </form>
+</div>
