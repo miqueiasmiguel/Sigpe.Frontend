@@ -36,7 +36,7 @@ export class TokenService {
     return date;
   }
 
-  private getUserRole(): TipoUsuarioEnum | null {
+  public getUserRole(): TipoUsuarioEnum | null {
     const token = this.getAuthorizationToken();
 
     if (!token) return null;

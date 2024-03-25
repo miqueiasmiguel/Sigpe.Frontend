@@ -6,25 +6,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Pessoas
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/paciente" routerLinkActive="active">Pacientes</a></li>
-            <li><a class="dropdown-item" routerLink="/medico" routerLinkActive="active">Médicos</a></li>
-            <li><a class="dropdown-item" routerLink="/usuario" routerLinkActive="active">Usuários</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/medicamento" routerLinkActive="active">Medicamentos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/especialidade" routerLinkActive="active">Especialidades</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/plano-saude" routerLinkActive="active">Planos de saúde</a>
-        </li>
+        @for (item of navItems; track item) {
+          <li class="nav-item">
+            <a class="nav-link" routerLink="{{ item.rota }}" routerLinkActive="active">{{ item.display }}</a>
+          </li>
+        }
       </ul>
       <button type="button" class="btn btn-outline-primary me-2">Perfil</button>
       <button type="button" class="btn btn-outline-danger">Sair</button>

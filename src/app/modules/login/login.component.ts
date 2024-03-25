@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Login } from '../../models/login.interface';
 import { TokenService } from '../../services/token.service';
 
@@ -14,6 +14,7 @@ import { TokenService } from '../../services/token.service';
 })
 export class LoginComponent {
   private tokenService = inject(TokenService);
+  private router = inject(Router);
 
   public showAlert: boolean = false;
   public alertClass: string = '';
@@ -38,6 +39,7 @@ export class LoginComponent {
     this.tokenService.login(login).subscribe({
       next: (jwtToken) => {
         localStorage.setItem('jwtToken', jwtToken.token);
+        this.router.navigate(['']);
       },
       error: (err) => {
         this.mostrarAlerta(`Erro: ${err.error.message}`, false);

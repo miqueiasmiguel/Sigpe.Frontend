@@ -12,10 +12,20 @@ import { PacienteListaComponent } from './modules/paciente-lista/paciente-lista.
 import { PacienteCadastroComponent } from './modules/paciente-cadastro/paciente-cadastro.component';
 import { UsuarioListaComponent } from './modules/usuario-lista/usuario-lista.component';
 import { UsuarioCadastroComponent } from './modules/usuario-cadastro/usuario-cadastro.component';
+import { authGuard } from './guards/auth.guard';
+import { hasRoleGuard } from './guards/has-role.guard';
+import { TipoUsuarioEnum } from './enums/tipo-usuario.enum';
+import { AgendamentoListaComponent } from './modules/agendamento-lista/agendamento-lista.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: '',
+    component: AgendamentoListaComponent,
+    children: [
+      { path: '', redirectTo: 'agendamento', pathMatch: 'full' },
+      { path: 'agendamento', component: AgendamentoListaComponent },
+    ],
+    canMatch: [authGuard]
+  },
 
   { path: 'medicamento', component: MedicamentoListaComponent },
   { path: 'medicamento/novo', component: MedicamentoComponent },
@@ -34,10 +44,14 @@ export const routes: Routes = [
   { path: 'medico/cadastro/:id', component: MedicoCadastroComponent },
 
   { path: 'paciente', component: PacienteListaComponent },
+  //{ path: 'paciente/:id', component: PerfilComponent },
   { path: 'paciente/cadastro', component: PacienteCadastroComponent },
   { path: 'paciente/cadastro/:id', component: PacienteCadastroComponent },
 
   { path: 'usuario', component: UsuarioListaComponent },
   { path: 'usuario/cadastro', component: UsuarioCadastroComponent },
   { path: 'usuario/cadastro/:id', component: UsuarioCadastroComponent },
+
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
 ];
