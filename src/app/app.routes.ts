@@ -17,6 +17,7 @@ import { hasRoleGuard } from './guards/has-role.guard';
 import { TipoUsuarioEnum } from './enums/tipo-usuario.enum';
 import { AgendamentoListaComponent } from './modules/agendamento-lista/agendamento-lista.component';
 import { AgendamentoComponent } from './modules/agendamento/agendamento.component';
+import { PrescricaoListaComponent } from './modules/prescricao-lista/prescricao-lista.component';
 
 export const routes: Routes = [
   { path: '',
@@ -42,6 +43,10 @@ export const routes: Routes = [
   { path: 'plano-saude', component: PlanoSaudeListaComponent },
   { path: 'plano-saude/novo', component: PlanoSaudeComponent },
   { path: 'plano-saude/:id', component: PlanoSaudeComponent },
+
+  { path: 'prescricao', component: PrescricaoListaComponent },
+  //{ path: 'prescricao/novo', component: PrescricaoComponent },
+  //{ path: 'prescricao/:id', component: PrescricaoComponent },
 
   { path: 'medico', component: MedicoListaComponent },
   { path: 'medico/cadastro', component: MedicoCadastroComponent },

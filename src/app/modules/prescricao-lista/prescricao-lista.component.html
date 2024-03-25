@@ -1,0 +1,27 @@
+<app-navbar></app-navbar>
+<div class="container-sm d-flex flex-column justify-content-center">
+  <div class="d-flex justify-content-end my-3">
+    <button class="btn btn-primary" routerLink="/prescricao/novo">Novo</button>
+  </div>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Data</th>
+        <th scope="col">Medicamento</th>
+        <th scope="col">Paciente</th>
+        <th scope="col">Medico</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (prescricao of prescricoes; track prescricao.id) {
+        <tr routerLink="/prescricao/{{ prescricao.id }}">
+          <th scope="row">{{ prescricao.data }}</th>
+          <td>{{ prescricao.medicamentoId }}</td>
+          <td>{{ prescricao.pacienteId }}</td>
+          <td>{{ prescricao.medicamentoId }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
