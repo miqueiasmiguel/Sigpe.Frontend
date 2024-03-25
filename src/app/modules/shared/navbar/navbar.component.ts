@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { TokenService } from '../../../services/token.service';
 import { TipoUsuarioEnum } from '../../../enums/tipo-usuario.enum';
 
@@ -12,6 +12,8 @@ import { TipoUsuarioEnum } from '../../../enums/tipo-usuario.enum';
 })
 export class NavbarComponent implements OnInit {
   private tokenService = inject(TokenService);
+  private router = inject(Router);
+
   public navItems = [{ display: '', rota: '' }];
 
   ngOnInit(): void {
@@ -51,5 +53,10 @@ export class NavbarComponent implements OnInit {
         { display: 'Prescrições', rota: '/prescricao' },
       ];
     }
+  }
+
+  public logout(): void {
+    this.tokenService.logout();
+    this.router.navigate(['']);
   }
 }

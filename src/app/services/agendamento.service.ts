@@ -19,12 +19,12 @@ export class AgendamentoService {
     return this.http.get<Agendamento>(`${this.endpointBase}/${id}`);
   }
 
-  public getByMedicoId(id: number): Observable<Agendamento> {
-    return this.http.get<Agendamento>(`${this.endpointBase}/Medico/${id}`);
+  public getByMedicoId(id: number): Observable<Agendamento[]> {
+    return this.http.get<Agendamento[]>(`${this.endpointBase}/Medico/${id}`);
   }
 
-  public getByPacienteId(id: number): Observable<Agendamento> {
-    return this.http.get<Agendamento>(`${this.endpointBase}/Paciente/${id}`);
+  public getByPacienteId(id: number): Observable<Agendamento[]> {
+    return this.http.get<Agendamento[]>(`${this.endpointBase}/Paciente/${id}`);
   }
 
   public create(entidade: Agendamento): Observable<Agendamento> {
