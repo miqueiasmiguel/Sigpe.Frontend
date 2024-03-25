@@ -30,7 +30,6 @@ export class AgendamentoComponent {
   public medicos: Medico[] = [];
   public statusAgendamento = [
     { display: 'Cancelado', value: StatusAgendamentoEnum.CANCELADO },
-    { display: 'Confirmado', value: StatusAgendamentoEnum.CONFIRMADO },
     { display: 'Finalizado', value: StatusAgendamentoEnum.FINALIZADO },
     { display: 'Solicitado', value: StatusAgendamentoEnum.SOLICITADO },
   ];
