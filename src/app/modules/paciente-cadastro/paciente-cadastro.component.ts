@@ -22,7 +22,7 @@ export class PacienteCadastroComponent {
   private pacienteService = inject(PacienteService);
   private planoSaudeService = inject(PlanoSaudeService);
   private medicamentoService = inject(MedicamentoService);
-  private router = inject(Router);
+  public router = inject(Router);
 
   public planosSaude: PlanoSaude[] = [];
   public medicamentos: Medicamento[] = [];
@@ -55,6 +55,8 @@ export class PacienteCadastroComponent {
     this.carregarPlanosSaude();
     this.carregarMedicamentos();
     this.inicializaFormulario();
+
+    console.log(this.router.url);
   }
 
   private carregarPlanosSaude(): void {
