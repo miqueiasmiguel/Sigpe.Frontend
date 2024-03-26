@@ -34,7 +34,7 @@ export class AgendamentoListaComponent implements OnInit {
   private alimentarLista(): void {
     const tipoUsuario = this.tokenService.getUserRole();
 
-    if (tipoUsuario == TipoUsuarioEnum.RECEPCIONISTA) {
+    if (tipoUsuario == TipoUsuarioEnum.RECEPCIONISTA || tipoUsuario == TipoUsuarioEnum.ADMINISTRADOR ) {
       this.agendamentoService.get().subscribe({
         next: (agendamentos) => {
           this.agendamentos = agendamentos

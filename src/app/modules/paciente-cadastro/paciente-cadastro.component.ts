@@ -7,6 +7,8 @@ import { PacienteService } from '../../services/paciente.service';
 import { PlanoSaudeService } from '../../services/plano-saude.service';
 import { PlanoSaude } from '../../models/plano-saude.interface';
 import { Paciente } from '../../models/paciente.interface';
+import { MedicamentoService } from '../../services/medicamento.service';
+import { Medicamento } from '../../models/medicamento.interface';
 
 @Component({
   selector: 'app-paciente-cadastro',
@@ -19,9 +21,12 @@ export class PacienteCadastroComponent {
   @Input() id?: number;
   private pacienteService = inject(PacienteService);
   private planoSaudeService = inject(PlanoSaudeService);
+  private medicamentoService = inject(MedicamentoService);
   private router = inject(Router);
 
   public planosSaude: PlanoSaude[] = [];
+  public medicamentos: Medicamento[] = [];
+  public alergias: Medicamento[] = [];
 
   private paciente: Paciente = {
     nome: '',
@@ -42,12 +47,36 @@ export class PacienteCadastroComponent {
     dataNascimento: new FormControl(),
     endereco: new FormControl(),
     telefone: new FormControl(),
-    planoSaudeId: new FormControl()
+    planoSaudeId: new FormControl(),
+    medicamentoId: new FormControl()
   });
 
   ngOnInit(): void {
-    this.inicializaFormulario();
     this.carregarPlanosSaude();
+    this.carregarMedicamentos();
+    this.inicializaFormulario();
+  }
+
+  private carregarPlanosSaude(): void {
+    this.planoSaudeService.get().subscribe({
+      next: (planosSaude) => {
+        this.planosSaude = planosSaude;
+      },
+      error: (err) => {
+        this.mostrarAlerta(`Erro: ${err.error.message}`, false);
+      }
+    });
+  }
+
+  private carregarMedicamentos(): void {
+    this.medicamentoService.get().subscribe({
+      next: (medicamentos) => {
+        this.medicamentos = medicamentos;
+      },
+      error: (err) => {
+        this.mostrarAlerta(`Erro: ${err.error.message}`, false);
+      }
+    });
   }
 
   private inicializaFormulario(): void {
@@ -60,6 +89,9 @@ export class PacienteCadastroComponent {
           telefone: paciente.telefone,
           planoSaudeId: paciente.planoSaudeId
         });
+        if (paciente.alergias) {
+          this.alergias = paciente.alergias;
+        }
       })
 
       this.form.disable();
@@ -81,6 +113,7 @@ export class PacienteCadastroComponent {
     this.paciente.endereco = this.form.value.endereco;
     this.paciente.telefone = this.form.value.telefone;
     this.paciente.planoSaudeId = this.form.value.planoSaudeId;
+    this.paciente.alergias = this.alergias;
 
     if (this.id) {
       this.paciente.id = this.id;
@@ -128,15 +161,22 @@ export class PacienteCadastroComponent {
     });
   }
 
-  private carregarPlanosSaude(): void {
-    this.planoSaudeService.get().subscribe({
-      next: (planosSaude) => {
-        this.planosSaude = planosSaude;
-      },
-      error: (err) => {
-        this.mostrarAlerta(`Erro: ${err.error.message}`, false);
-      }
-    })
+  public adicionarAlergia(): void {
+    const medicamento = this.medicamentos.filter(m => m.id == parseInt(this.form.value.medicamentoId))[0];
+
+    if (this.alergias.includes(medicamento)) {
+      return;
+    }
+
+    if (medicamento) {
+      this.alergias.push(medicamento);
+    }
+
+    this.form.controls['medicamentoId'].setValue('');
+  }
+
+  public removerAlergia(id: number): void {
+    this.alergias = this.alergias.filter(m => m.id != id);
   }
 
   private mostrarAlerta(mensagem: string, isSuccess: boolean) {
