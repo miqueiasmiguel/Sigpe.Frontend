@@ -20,6 +20,7 @@ import { AgendamentoComponent } from './modules/agendamento/agendamento.componen
 import { PrescricaoListaComponent } from './modules/prescricao-lista/prescricao-lista.component';
 import { PrescricaoComponent } from './modules/prescricao/prescricao.component';
 import { PacientePerfilComponent } from './modules/paciente-perfil/paciente-perfil.component';
+import { MedicoPerfilComponent } from './modules/medico-perfil/medico-perfil.component';
 
 export const routes: Routes = [
   { path: '',
@@ -51,6 +52,7 @@ export const routes: Routes = [
   { path: 'prescricao/:id', component: PrescricaoComponent, canMatch: [authGuard] },
 
   { path: 'medico', component: MedicoListaComponent, canMatch: [authGuard] },
+  { path: 'medico/perfil/:id', component: MedicoPerfilComponent, canMatch: [authGuard] },
   { path: 'medico/cadastro', component: MedicoCadastroComponent, canMatch: [authGuard] },
   { path: 'medico/cadastro/:id', component: MedicoCadastroComponent, canMatch: [authGuard] },
 

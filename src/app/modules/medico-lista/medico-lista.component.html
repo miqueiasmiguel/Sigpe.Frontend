@@ -15,7 +15,7 @@
     </thead>
     <tbody>
       @for (medico of medicos; track medico.id) {
-        <tr routerLink="/medico/cadastro/{{ medico.id }}">
+        <tr routerLink="/medico/perfil/{{ medico.id }}">
           <th scope="row">{{ medico.id }}</th>
           <td>{{ medico.nome }}</td>
           <td>{{ medico.telefone }}</td>

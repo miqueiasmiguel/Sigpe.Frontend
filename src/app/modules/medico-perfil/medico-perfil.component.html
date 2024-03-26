@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+<div class="container">
+  @if (showAlert) {
+    <div [ngClass]="alertClass" class="alert fade show" role="alert">
+      {{ alertMessage }}
+    </div>
+  }
+  <section style="background-color: #eee;">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="my-3 card-title">{{ medico.nome }}</h5>
+              <p class="text-muted mb-1">Data de nascimento: {{ medico.dataNascimento | date: 'dd/MM/YYYY' }}</p>
+              <p class="text-muted mb-1">Endereço: {{ medico.endereco }}</p>
+              <p class="text-muted mb-1">Telefone: {{ medico.telefone }}</p>
+              <p class="text-muted mb-1">CRM: {{ medico.crm }}</p>
+              <p class="text-muted mb-1">Especialidade: {{ medico.especialidade?.nome }}</p>
+              <div class="d-flex justify-content-end mt-4 mb-2">
+                <button routerLink="/medico/cadastro/{{ id }}" type="button" class="btn btn-outline-primary ms-1">Editar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="row">
+            <button class="btn btn-outline-dark d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">
+              Agendamentos<i class="bi bi-chevron-down"></i>
+            </button>
+            <div class="col">
+              <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body">
+                  <table class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Data</th>
+                        <th scope="col">Paciente</th>
+                        <th scope="col">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (agendamento of agendamentos; track agendamento.id) {
+                        <tr>
+                          <td>{{ agendamento.dataHora | date: 'dd/MM/YYY h:mm a' }}</td>
+                          <td>{{ agendamento.paciente?.nome }}</td>
+                          <td>{{ statusAgendamento[agendamento.status] }}</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
