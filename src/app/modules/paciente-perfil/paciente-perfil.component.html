@@ -1,5 +1,10 @@
 <app-navbar></app-navbar>
 <div class="container">
+  @if (showAlert) {
+    <div [ngClass]="alertClass" class="alert fade show" role="alert">
+      {{ alertMessage }}
+    </div>
+  }
   <section style="background-color: #eee;">
     <div class="container py-5">
       <div class="row">
@@ -49,7 +54,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @for (agendamento of paciente.agendamentos; track agendamento.id) {
+                      @for (agendamento of agendamentos; track agendamento.id) {
                         <tr>
                           <td>{{ agendamento.dataHora | date: 'dd/MM/YYY h:mm a' }}</td>
                           <td>{{ agendamento.medico?.nome }}</td>
@@ -76,7 +81,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @for (prescricao of paciente.prescricoes; track prescricao.id) {
+                      @for (prescricao of prescricoes; track prescricao.id) {
                         <tr>
                           <td>{{ prescricao.data | date: 'dd/MM/YYY' }}</td>
                           <td>{{ prescricao.medicamento?.nome }}</td>

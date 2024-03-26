@@ -19,6 +19,14 @@ export class PrescricaoService {
     return this.http.get<Prescricao>(`${this.endpointBase}/${id}`);
   }
 
+  public getByMedicoId(id: number): Observable<Prescricao[]> {
+    return this.http.get<Prescricao[]>(`${this.endpointBase}/Medico/${id}`);
+  }
+
+  public getByPacienteId(id: number): Observable<Prescricao[]> {
+    return this.http.get<Prescricao[]>(`${this.endpointBase}/Paciente/${id}`);
+  }
+
   public create(entidade: Prescricao): Observable<Prescricao> {
     return this.http.post<Prescricao>(this.endpointBase, entidade);
   }
