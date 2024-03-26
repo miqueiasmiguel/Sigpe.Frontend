@@ -19,6 +19,7 @@ import { AgendamentoListaComponent } from './modules/agendamento-lista/agendamen
 import { AgendamentoComponent } from './modules/agendamento/agendamento.component';
 import { PrescricaoListaComponent } from './modules/prescricao-lista/prescricao-lista.component';
 import { PrescricaoComponent } from './modules/prescricao/prescricao.component';
+import { PacientePerfilComponent } from './modules/paciente-perfil/paciente-perfil.component';
 
 export const routes: Routes = [
   { path: '',
@@ -33,34 +34,34 @@ export const routes: Routes = [
   { path: 'agendamento/novo', component: AgendamentoComponent, canMatch: [authGuard] },
   { path: 'agendamento/:id', component: AgendamentoComponent, canMatch: [authGuard] },
 
-  { path: 'medicamento', component: MedicamentoListaComponent },
-  { path: 'medicamento/novo', component: MedicamentoComponent },
-  { path: 'medicamento/:id', component: MedicamentoComponent },
+  { path: 'medicamento', component: MedicamentoListaComponent, canMatch: [authGuard] },
+  { path: 'medicamento/novo', component: MedicamentoComponent, canMatch: [authGuard] },
+  { path: 'medicamento/:id', component: MedicamentoComponent, canMatch: [authGuard] },
 
-  { path: 'especialidade', component: EspecialidadeListaComponent },
-  { path: 'especialidade/novo', component: EspecialidadeComponent },
-  { path: 'especialidade/:id', component: EspecialidadeComponent },
+  { path: 'especialidade', component: EspecialidadeListaComponent, canMatch: [authGuard] },
+  { path: 'especialidade/novo', component: EspecialidadeComponent, canMatch: [authGuard] },
+  { path: 'especialidade/:id', component: EspecialidadeComponent, canMatch: [authGuard] },
 
-  { path: 'plano-saude', component: PlanoSaudeListaComponent },
-  { path: 'plano-saude/novo', component: PlanoSaudeComponent },
-  { path: 'plano-saude/:id', component: PlanoSaudeComponent },
+  { path: 'plano-saude', component: PlanoSaudeListaComponent, canMatch: [authGuard] },
+  { path: 'plano-saude/novo', component: PlanoSaudeComponent, canMatch: [authGuard] },
+  { path: 'plano-saude/:id', component: PlanoSaudeComponent, canMatch: [authGuard] },
 
-  { path: 'prescricao', component: PrescricaoListaComponent },
-  { path: 'prescricao/novo', component: PrescricaoComponent },
-  { path: 'prescricao/:id', component: PrescricaoComponent },
+  { path: 'prescricao', component: PrescricaoListaComponent, canMatch: [authGuard] },
+  { path: 'prescricao/novo', component: PrescricaoComponent, canMatch: [authGuard] },
+  { path: 'prescricao/:id', component: PrescricaoComponent, canMatch: [authGuard] },
 
-  { path: 'medico', component: MedicoListaComponent },
-  { path: 'medico/cadastro', component: MedicoCadastroComponent },
-  { path: 'medico/cadastro/:id', component: MedicoCadastroComponent },
+  { path: 'medico', component: MedicoListaComponent, canMatch: [authGuard] },
+  { path: 'medico/cadastro', component: MedicoCadastroComponent, canMatch: [authGuard] },
+  { path: 'medico/cadastro/:id', component: MedicoCadastroComponent, canMatch: [authGuard] },
 
-  { path: 'paciente', component: PacienteListaComponent },
-  //{ path: 'paciente/:id', component: PerfilComponent },
-  { path: 'paciente/cadastro', component: PacienteCadastroComponent },
-  { path: 'paciente/cadastro/:id', component: PacienteCadastroComponent },
+  { path: 'paciente', component: PacienteListaComponent, canMatch: [authGuard] },
+  { path: 'paciente/perfil/:id', component: PacientePerfilComponent, canMatch: [authGuard] },
+  { path: 'paciente/cadastro', component: PacienteCadastroComponent, canMatch: [authGuard] },
+  { path: 'paciente/cadastro/:id', component: PacienteCadastroComponent, canMatch: [authGuard] },
 
-  { path: 'usuario', component: UsuarioListaComponent },
-  { path: 'usuario/cadastro', component: UsuarioCadastroComponent },
-  { path: 'usuario/cadastro/:id', component: UsuarioCadastroComponent },
+  { path: 'usuario', component: UsuarioListaComponent, canMatch: [authGuard] },
+  { path: 'usuario/cadastro', component: UsuarioCadastroComponent, canMatch: [authGuard] },
+  { path: 'usuario/cadastro/:id', component: UsuarioCadastroComponent, canMatch: [authGuard] },
 
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },

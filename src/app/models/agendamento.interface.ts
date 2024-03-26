@@ -1,4 +1,6 @@
 import { StatusAgendamentoEnum } from "../enums/status-agendamento.enum";
+import { Medico } from "./medico.interface";
+import { Paciente } from "./paciente.interface";
 
 export interface Agendamento {
   id?: number,
@@ -7,4 +9,6 @@ export interface Agendamento {
   status: StatusAgendamentoEnum,
   pacienteId: number,
   medicoId: number
+  paciente?: Paciente,
+  medico?: Medico
 }

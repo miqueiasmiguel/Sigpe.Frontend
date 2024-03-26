@@ -15,7 +15,7 @@
     </thead>
     <tbody>
       @for (paciente of pacientes; track paciente.id) {
-        <tr routerLink="/paciente/cadastro/{{ paciente.id }}">
+        <tr routerLink="/paciente/perfil/{{ paciente.id }}">
           <th scope="row">{{ paciente.id }}</th>
           <td>{{ paciente.nome }}</td>
           <td>{{ paciente.dataNascimento | date:"dd/MM/YYYY" }}</td>

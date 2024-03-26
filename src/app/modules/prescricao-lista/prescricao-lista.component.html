@@ -17,7 +17,7 @@
       @for (prescricao of prescricoes; track prescricao.id) {
         <tr routerLink="/prescricao/{{ prescricao.id }}">
           <th scope="row">{{ prescricao.id }}</th>
-          <th>{{ prescricao.data | date: 'dd/MM/YYYY' }}</th>
+          <td>{{ prescricao.data | date: 'dd/MM/YYYY' }}</td>
           <td>{{ prescricao.medicamentoId }}</td>
           <td>{{ prescricao.pacienteId }}</td>
           <td>{{ prescricao.medicamentoId }}</td>
