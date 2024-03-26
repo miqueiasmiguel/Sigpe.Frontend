@@ -1,3 +1,5 @@
+import { Especialidade } from "./especialidade.interface";
+
 export interface Medico {
   id?: number,
   nome: string,
@@ -5,5 +7,6 @@ export interface Medico {
   endereco: string,
   telefone: string,
   crm: string,
-  especialidadeId: number
+  especialidadeId: number,
+  especialidade?: Especialidade
 }

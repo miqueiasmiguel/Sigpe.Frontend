@@ -18,8 +18,8 @@
         <tr routerLink="/agendamento/{{ agendamento.id }}">
           <th scope="row">{{ agendamento.id }}</th>
           <td>{{ agendamento.dataHora | date: "dd/MM/YYY h:mm a" }}</td>
-          <td>{{ agendamento.medicoId }}</td>
-          <td>{{ agendamento.pacienteId }}</td>
+          <td>{{ agendamento.medico?.nome }}</td>
+          <td>{{ agendamento.paciente?.nome }}</td>
           <td>{{ statusAgendamento[agendamento.status] }}</td>
         </tr>
       }

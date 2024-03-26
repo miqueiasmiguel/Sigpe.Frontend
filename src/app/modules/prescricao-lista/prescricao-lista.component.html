@@ -18,9 +18,9 @@
         <tr routerLink="/prescricao/{{ prescricao.id }}">
           <th scope="row">{{ prescricao.id }}</th>
           <td>{{ prescricao.data | date: 'dd/MM/YYYY' }}</td>
-          <td>{{ prescricao.medicamentoId }}</td>
-          <td>{{ prescricao.pacienteId }}</td>
-          <td>{{ prescricao.medicamentoId }}</td>
+          <td>{{ prescricao.medicamento?.nome }}</td>
+          <td>{{ prescricao.paciente?.nome }}</td>
+          <td>{{ prescricao.medicamento?.nome }}</td>
         </tr>
       }
     </tbody>

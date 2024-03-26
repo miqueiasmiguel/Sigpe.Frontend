@@ -20,7 +20,7 @@
           <td>{{ paciente.nome }}</td>
           <td>{{ paciente.dataNascimento | date:"dd/MM/YYYY" }}</td>
           <td>{{ paciente.telefone }}</td>
-          <td>{{ paciente.planoSaudeId }}</td>
+          <td>{{ paciente.planoSaude?.nome }}</td>
         </tr>
       }
     </tbody>
