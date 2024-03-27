@@ -15,25 +15,43 @@ export class NavbarComponent implements OnInit {
   private router = inject(Router);
 
   public navItems = [{ display: '', rota: '' }];
+  public btnPerfil = { mostrar: true, rota: '' };
+  private tipoUsuario: TipoUsuarioEnum | null = null;
+  private id: number | null = null;
 
   ngOnInit(): void {
-    const tipoUsuario = this.tokenService.getUserRole()
-    this.alimentarNavbar(tipoUsuario);
+    this.tipoUsuario = this.tokenService.getUserRole();
+    this.id = this.tokenService.getUserId();
+
+    this.alimentarNavbar();
+    this.definirBtnPerfil();
   }
 
-  private alimentarNavbar(tipoUsuario: TipoUsuarioEnum | null): void {
-    if (tipoUsuario == TipoUsuarioEnum.PACIENTE) {
+  private definirBtnPerfil(): void {
+    if (this.tipoUsuario == TipoUsuarioEnum.RECEPCIONISTA || this.tipoUsuario == TipoUsuarioEnum.ADMINISTRADOR) {
+      this.btnPerfil.mostrar = false;
+    } else if (this.tipoUsuario == TipoUsuarioEnum.PACIENTE) {
+      this.btnPerfil.mostrar = true;
+      this.btnPerfil.rota = `/paciente/perfil/${this.id}`;
+    } else if (this.tipoUsuario == TipoUsuarioEnum.MEDICO) {
+      this.btnPerfil.mostrar = true;
+      this.btnPerfil.rota = `/medico/perfil/${this.id}`;
+    }
+  }
+
+  private alimentarNavbar(): void {
+    if (this.tipoUsuario == TipoUsuarioEnum.PACIENTE) {
       this.navItems = [
         { display: 'Agendamentos', rota: '/agendamento' },
         { display: 'Prescrições', rota: '/prescricao' },
       ];
-    } else if (tipoUsuario == TipoUsuarioEnum.MEDICO) {
+    } else if (this.tipoUsuario == TipoUsuarioEnum.MEDICO) {
       this.navItems = [
         { display: 'Pacientes', rota: '/paciente' },
         { display: 'Agendamentos', rota: '/agendamento' },
         { display: 'Prescrições', rota: '/prescricao' },
       ];
-    } else if (tipoUsuario == TipoUsuarioEnum.RECEPCIONISTA){
+    } else if (this.tipoUsuario == TipoUsuarioEnum.RECEPCIONISTA){
       this.navItems = [
         { display: 'Pacientes', rota: '/paciente' },
         { display: 'Médicos', rota: '/medico' },
@@ -41,7 +59,7 @@ export class NavbarComponent implements OnInit {
         { display: 'Agendamentos', rota: '/agendamento' },
         { display: 'Prescrições', rota: '/prescricao' },
       ];
-    } else if (tipoUsuario == TipoUsuarioEnum.ADMINISTRADOR) {
+    } else if (this.tipoUsuario == TipoUsuarioEnum.ADMINISTRADOR) {
       this.navItems = [
         { display: 'Pacientes', rota: '/paciente' },
         { display: 'Médicos', rota: '/medico' },

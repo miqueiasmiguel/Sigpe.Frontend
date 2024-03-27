@@ -12,7 +12,9 @@
           </li>
         }
       </ul>
-      <button type="button" class="btn btn-outline-primary me-2">Perfil</button>
+      @if (btnPerfil.mostrar) {
+        <button routerLink="{{ btnPerfil.rota }}" type="button" class="btn btn-outline-primary me-2">Perfil</button>
+      }
       <button type="button" class="btn btn-outline-danger" (click)="logout()">Sair</button>
     </div>
   </div>
