@@ -1,5 +1,10 @@
 <app-navbar></app-navbar>
 <div class="container-sm d-flex flex-column justify-content-center">
+  @if (showAlert) {
+    <div [ngClass]="alertClass" class="alert fade show" role="alert">
+      {{ alertMessage }}
+    </div>
+  }
   <div class="d-flex justify-content-end my-3">
     <button class="btn btn-primary" routerLink="/agendamento/novo">Novo</button>
   </div>

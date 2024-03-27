@@ -1,7 +1,14 @@
 <app-navbar></app-navbar>
 <div class="container-sm d-flex flex-column justify-content-center">
+  @if (showAlert) {
+    <div [ngClass]="alertClass" class="alert fade show" role="alert">
+      {{ alertMessage }}
+    </div>
+  }
   <div class="d-flex justify-content-end my-3">
-    <button class="btn btn-primary" routerLink="/prescricao/novo">Novo</button>
+    @if (mostrarBotaoNovo()) {
+      <button class="btn btn-primary" routerLink="/prescricao/novo">Novo</button>
+    }
   </div>
   <table class="table table-striped table-hover">
     <thead>
@@ -20,7 +27,7 @@
           <td>{{ prescricao.data | date: 'dd/MM/YYYY' }}</td>
           <td>{{ prescricao.medicamento?.nome }}</td>
           <td>{{ prescricao.paciente?.nome }}</td>
-          <td>{{ prescricao.medicamento?.nome }}</td>
+          <td>{{ prescricao.medico?.nome }}</td>
         </tr>
       }
     </tbody>
