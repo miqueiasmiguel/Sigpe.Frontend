@@ -30,7 +30,8 @@ export class PrescricaoComponent {
   private pacienteService = inject(PacienteService);
   private router = inject(Router);
 
-  private tipoUsuario: TipoUsuarioEnum | null = null;
+  public tipoUsuarioEnum = TipoUsuarioEnum;
+  public tipoUsuario: TipoUsuarioEnum | null = null;
   private pessoaId: number | null = null;
   public medicamentos: Medicamento[] = [];
   public medicos: Medico[] = [];

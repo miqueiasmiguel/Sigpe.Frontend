@@ -56,19 +56,21 @@
           <textarea class="form-control" name="instrucoes" rows="3" id="instrucoes" formControlName="instrucoes"></textarea>
         </div>
       </div>
-      <div class="container d-flex justify-content-end">
-        @if (id && editMode) {
-          <button type="submit" class="btn btn-primary ms-3" (click)="salvar()">Salvar</button>
-        } @else if (id) {
-          <button type="button" class="btn btn-primary ms-3" (click)="editar()">Editar</button>
-        } @else {
-          <button type="submit" class="btn btn-primary ms-3" (click)="salvar()">Salvar</button>
-        }
+      @if (tipoUsuario != tipoUsuarioEnum.PACIENTE) {
+        <div class="container d-flex justify-content-end">
+          @if (id && editMode) {
+            <button type="submit" class="btn btn-primary ms-3" (click)="salvar()">Salvar</button>
+          } @else if (id) {
+            <button type="button" class="btn btn-primary ms-3" (click)="editar()">Editar</button>
+          } @else {
+            <button type="submit" class="btn btn-primary ms-3" (click)="salvar()">Salvar</button>
+          }
 
-        @if (id) {
-          <button type="button" class="btn btn-danger ms-3" (click)="deletar(id)">Deletar</button>
-        }
-      </div>
+          @if (id) {
+            <button type="button" class="btn btn-danger ms-3" (click)="deletar(id)">Deletar</button>
+          }
+        </div>
+      }
     </div>
   </form>
 </div>
