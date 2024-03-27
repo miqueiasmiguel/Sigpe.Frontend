@@ -1,3 +1,4 @@
+import { TipoUsuarioEnum } from './../../enums/tipo-usuario.enum';
 import { PacienteService } from './../../services/paciente.service';
 import { Component, Input, inject } from '@angular/core';
 import { AgendamentoService } from '../../services/agendamento.service';
@@ -10,6 +11,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Paciente } from '../../models/paciente.interface';
 import { Medico } from '../../models/medico.interface';
 import { StatusAgendamentoEnum } from '../../enums/status-agendamento.enum';
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-agendamento',
@@ -20,12 +22,15 @@ import { StatusAgendamentoEnum } from '../../enums/status-agendamento.enum';
 })
 export class AgendamentoComponent {
   @Input() id?: number;
+  private tokenService = inject(TokenService);
   private agendamentoService = inject(AgendamentoService);
   private medicoService = inject(MedicoService);
   private pacienteService = inject(PacienteService);
 
   private router = inject(Router);
 
+  private tipoUsuario: TipoUsuarioEnum | null = null;
+  private pessoaId: number | null = null;
   public pacientes: Paciente[] = [];
   public medicos: Medico[] = [];
   public statusAgendamento = [
@@ -58,31 +63,56 @@ export class AgendamentoComponent {
   });
 
   ngOnInit(): void {
+    this.tipoUsuario = this.tokenService.getUserRole();
+    this.pessoaId = this.tokenService.getPessoaId();
+
     this.inicializaFormulario();
     this.carregarPacientes();
     this.carregarMedicos();
   }
 
   private carregarPacientes(): void {
-    this.pacienteService.get().subscribe({
-      next: (pacientes) => {
-        this.pacientes = pacientes;
-      },
-      error: (err) => {
-        this.mostrarAlerta(`Erro ${err.error.message}`, false);
-      }
-    });
+    if (this.tipoUsuario == TipoUsuarioEnum.PACIENTE) {
+      this.pacienteService.getById(this.pessoaId ?? 0).subscribe({
+        next: (paciente) => {
+          this.pacientes = [paciente];
+        },
+        error: (err) => {
+          this.mostrarAlerta(`Erro ${err.error.message}`, false);
+        }
+      });
+    } else {
+      this.pacienteService.get().subscribe({
+        next: (pacientes) => {
+          this.pacientes = pacientes;
+        },
+        error: (err) => {
+          this.mostrarAlerta(`Erro ${err.error.message}`, false);
+        }
+      });
+    }
   }
 
   private carregarMedicos(): void {
-    this.medicoService.get().subscribe({
-      next: (medicos) => {
-        this.medicos = medicos;
-      },
-      error: (err) => {
-        this.mostrarAlerta(`Erro ${err.error.message}`, false);
-      }
-    });
+    if (this.tipoUsuario == TipoUsuarioEnum.MEDICO) {
+      this.medicoService.getById(this.pessoaId ?? 0).subscribe({
+        next: (medico) => {
+          this.medicos = [medico];
+        },
+        error: (err) => {
+          this.mostrarAlerta(`Erro ${err.error.message}`, false);
+        }
+      });
+    } else {
+      this.medicoService.get().subscribe({
+        next: (medicos) => {
+          this.medicos = medicos;
+        },
+        error: (err) => {
+          this.mostrarAlerta(`Erro ${err.error.message}`, false);
+        }
+      });
+    }
   }
 
   private inicializaFormulario(): void {

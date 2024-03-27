@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.tipoUsuario = this.tokenService.getUserRole();
-    this.id = this.tokenService.getUserId();
+    this.id = this.tokenService.getPessoaId();
 
     this.alimentarNavbar();
     this.definirBtnPerfil();

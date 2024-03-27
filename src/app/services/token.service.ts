@@ -46,14 +46,13 @@ export class TokenService {
     return parseInt(decoded.Tipo)
   }
 
-  // getMedicoId(): number | null {
-  //   const token = this.getAuthorizationToken();
+  getPessoaId(): number | null {
+    const token = this.getAuthorizationToken();
 
-  //   if (!token) return null;
-  //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  //   const decoded: any = jwt_decode.default(token);
-  //   return Number(decoded.MedicoId);
-  // }
+    if (!token) return null;
+    const decoded: any = jwt_decode.jwtDecode(token);
+    return Number(decoded.PessoaId);
+  }
 
   public getUserId(): number | null {
     const token = this.getAuthorizationToken();

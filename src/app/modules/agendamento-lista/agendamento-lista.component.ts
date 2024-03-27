@@ -33,6 +33,7 @@ export class AgendamentoListaComponent implements OnInit {
 
   private alimentarLista(): void {
     const tipoUsuario = this.tokenService.getUserRole();
+    const pessoaId = this.tokenService.getPessoaId();
 
     if (tipoUsuario == TipoUsuarioEnum.RECEPCIONISTA || tipoUsuario == TipoUsuarioEnum.ADMINISTRADOR ) {
       this.agendamentoService.get().subscribe({
@@ -42,7 +43,25 @@ export class AgendamentoListaComponent implements OnInit {
         error: (err) => {
           this.mostrarAlerta(`Erro: ${err.error.message}`, false);
         }
-      })
+      });
+    } else if (tipoUsuario == TipoUsuarioEnum.MEDICO) {
+      this.agendamentoService.getByMedicoId(pessoaId ?? 0).subscribe({
+        next: (agendamentos) => {
+          this.agendamentos = agendamentos
+        },
+        error: (err) => {
+          this.mostrarAlerta(`Erro: ${err.error.message}`, false);
+        }
+      });
+    } else if (tipoUsuario == TipoUsuarioEnum.PACIENTE) {
+      this.agendamentoService.getByPacienteId(pessoaId ?? 0).subscribe({
+        next: (agendamentos) => {
+          this.agendamentos = agendamentos
+        },
+        error: (err) => {
+          this.mostrarAlerta(`Erro: ${err.error.message}`, false);
+        }
+      });
     }
   }
 
