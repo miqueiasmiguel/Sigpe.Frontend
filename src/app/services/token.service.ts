@@ -6,12 +6,14 @@ import { Observable } from "rxjs";
 import * as jwt_decode from 'jwt-decode';
 import { JwtToken } from "../models/jwt-token.interface";
 import { TipoUsuarioEnum } from "../enums/tipo-usuario.enum";
+import { DOCUMENT } from "@angular/common";
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenService {
-  private endpointBase: string = `${environment.API_URL}Token`;;
+  private endpointBase: string = `${environment.API_URL}Token`;
+  private document = inject(DOCUMENT);
   private http = inject(HttpClient);
 
   public login(login: Login): Observable<JwtToken> {
@@ -23,8 +25,7 @@ export class TokenService {
   }
 
   public getAuthorizationToken(): string | undefined | null {
-
-    return window.localStorage.getItem('jwtToken');;
+    return document.defaultView?.localStorage.getItem('jwtToken');
   }
 
   public getExpirationDate(token: string): Date {
