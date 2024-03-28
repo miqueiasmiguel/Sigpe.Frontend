@@ -25,7 +25,10 @@ export class TokenService {
   }
 
   public getAuthorizationToken(): string | undefined | null {
-    return document.defaultView?.localStorage.getItem('jwtToken');
+    if (typeof document !== 'undefined') {
+      return document.defaultView?.localStorage.getItem('jwtToken');
+    }
+    return null
   }
 
   public getExpirationDate(token: string): Date {
