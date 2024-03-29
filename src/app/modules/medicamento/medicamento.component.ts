@@ -85,7 +85,6 @@ export class MedicamentoComponent implements OnInit {
         this.mostrarAlerta(`Medicamento ${medicamento.nome} cadastrado com sucesso!`, true);
       },
       error: (err) => {
-        console.log(err);
         this.mostrarAlerta(`Erro: ${err.error.message}`, false);
       }
     });

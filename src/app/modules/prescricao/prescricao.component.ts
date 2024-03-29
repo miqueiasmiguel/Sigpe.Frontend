@@ -169,7 +169,6 @@ export class PrescricaoComponent {
         this.mostrarAlerta(`Prescrição cadastrada com sucesso!`, true);
       },
       error: (err) => {
-        console.log(err);
         this.mostrarAlerta(`Erro: ${err.error.message}`, false);
       }
     });

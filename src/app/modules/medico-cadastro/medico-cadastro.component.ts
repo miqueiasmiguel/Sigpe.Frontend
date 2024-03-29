@@ -113,7 +113,6 @@ export class MedicoCadastroComponent {
         this.mostrarAlerta(`Médico ${medico.nome} cadastrado com sucesso!`, true);
       },
       error: (err) => {
-        console.log(err);
         this.mostrarAlerta(`Erro: ${err.error.message}`, false);
       }
     });

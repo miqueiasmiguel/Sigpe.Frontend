@@ -88,7 +88,6 @@ export class EspecialidadeComponent implements OnInit {
         this.mostrarAlerta(`Especialidade ${especialidade.nome} cadastrada com sucesso!`, true);
       },
       error: (err) => {
-        console.log(err);
         this.mostrarAlerta(`Erro: ${err.error.message}`, false);
       }
     });

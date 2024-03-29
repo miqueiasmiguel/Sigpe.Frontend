@@ -118,7 +118,6 @@ export class UsuarioCadastroComponent implements OnInit {
         this.mostrarAlerta(`Usuário ${usuario.email} cadastrado com sucesso!`, true);
       },
       error: (err) => {
-        console.log(err);
         this.mostrarAlerta(`Erro: ${err.error.message}`, false);
       }
     });

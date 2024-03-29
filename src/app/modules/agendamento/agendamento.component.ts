@@ -1,6 +1,6 @@
 import { TipoUsuarioEnum } from './../../enums/tipo-usuario.enum';
 import { PacienteService } from './../../services/paciente.service';
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, LOCALE_ID, inject } from '@angular/core';
 import { AgendamentoService } from '../../services/agendamento.service';
 import { MedicoService } from '../../services/medico.service';
 import { Agendamento } from '../../models/agendamento.interface';
@@ -17,6 +17,7 @@ import { TokenService } from '../../services/token.service';
   selector: 'app-agendamento',
   standalone: true,
   imports: [CommonModule, NavbarComponent, ReactiveFormsModule, RouterLink],
+  providers: [{provide: LOCALE_ID, useValue: 'pt-BR' }],
   templateUrl: './agendamento.component.html',
   styleUrl: './agendamento.component.scss'
 })
@@ -141,7 +142,7 @@ export class AgendamentoComponent {
       return;
     }
 
-    this.agendamento.dataHora = this.form.value.dataHora;
+    this.agendamento.dataHora = new Date(new Date(this.form.value.dataHora).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }));
     this.agendamento.motivo = this.form.value.motivo;
     this.agendamento.status = parseInt(this.form.value.status);
     this.agendamento.pacienteId = parseInt(this.form.value.pacienteId);
@@ -174,7 +175,6 @@ export class AgendamentoComponent {
         this.mostrarAlerta(`Agendamento cadastrado com sucesso!`, true);
       },
       error: (err) => {
-        console.log(err);
         this.mostrarAlerta(`Erro: ${err.error.message}`, false);
       }
     });

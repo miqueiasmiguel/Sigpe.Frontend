@@ -55,8 +55,6 @@ export class PacienteCadastroComponent {
     this.carregarPlanosSaude();
     this.carregarMedicamentos();
     this.inicializaFormulario();
-
-    console.log(this.router.url);
   }
 
   private carregarPlanosSaude(): void {
@@ -124,7 +122,6 @@ export class PacienteCadastroComponent {
     }
 
     this.cadastrar(this.paciente);
-    this.form.reset();
   }
 
   public deletar(id: number): void {
@@ -142,9 +139,10 @@ export class PacienteCadastroComponent {
     this.pacienteService.create(paciente).subscribe({
       next: (paciente) => {
         this.mostrarAlerta(`Paciente ${paciente.nome} cadastrado com sucesso!`, true);
+        this.form.reset();
+        this.alergias = [];
       },
       error: (err) => {
-        console.log(err);
         this.mostrarAlerta(`Erro: ${err.error.message}`, false);
       }
     });
