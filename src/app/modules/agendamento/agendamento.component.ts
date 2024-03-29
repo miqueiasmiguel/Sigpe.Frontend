@@ -17,7 +17,7 @@ import { TokenService } from '../../services/token.service';
   selector: 'app-agendamento',
   standalone: true,
   imports: [CommonModule, NavbarComponent, ReactiveFormsModule, RouterLink],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-BR' }],
+  providers: [{provide: LOCALE_ID, useValue: 'pt' }],
   templateUrl: './agendamento.component.html',
   styleUrl: './agendamento.component.scss'
 })
@@ -120,7 +120,7 @@ export class AgendamentoComponent {
     if (this.id) {
       this.agendamentoService.getById(this.id).subscribe((agendamento) => {
         this.form.patchValue({
-          dataHora: formatDate(agendamento.dataHora, 'yyyy-MM-ddTHH:mm:ss', 'en'),
+          dataHora: formatDate(agendamento.dataHora, 'yyyy-MM-ddTHH:mm:ss', 'pt-BR'),
           motivo: agendamento.motivo,
           status: agendamento.status,
           pacienteId: agendamento.pacienteId,
@@ -142,7 +142,7 @@ export class AgendamentoComponent {
       return;
     }
 
-    this.agendamento.dataHora = new Date(new Date(this.form.value.dataHora).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }));
+    this.agendamento.dataHora = new Date(new Date(this.form.value.dataHora).toISOString());
     this.agendamento.motivo = this.form.value.motivo;
     this.agendamento.status = parseInt(this.form.value.status);
     this.agendamento.pacienteId = parseInt(this.form.value.pacienteId);
